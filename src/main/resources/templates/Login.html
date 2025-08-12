@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/CSS/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div class="login_outer_box" id="login_outer_box">
+	<h4>Login Page</h4>
+	<form action="/logInCustomer" method="post">
+		<input type="email" class="customText" name="email" placeholder="Enter email address" required>
+		<input type="password" class="customText" name="pass" placeholder="Enter your password" required>
+		
+		<div class="button_box">
+			<button type="submit" class="login_btn">Login</button>
+			<button type="button" onclick="togglePage('register')" class="login_btn">Register Page</button>
+		</div>
+	</form>
+	<p class="errorStatusSpan" th:if="${errorStatus}" th:text="${errorStatus}"></p>
+</div>
+
+<div class="register_outer_box" id="register_outer_box">
+	<h4>Register Page</h4>
+	<form action="/saveNewCustomer" method="post">
+		<input type="text" class="customText" name="custname" placeholder="Enter your name" required>
+		<input type="email" class="customText" name="email" placeholder="Enter email address" required>
+		<input type="number" class="customText" name="phonenumber" placeholder="Enter phone number" required>
+		<input type="password" class="customText" name="pass" placeholder="Enter your password" required>
+		
+		<div class="button_box">
+			<button type="submit" class="login_btn">Submit</button>
+			<button type="button" onclick="togglePage('login')" class="login_btn">Login Page</button>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+function togglePage(page){
+	if(page === "register"){
+		$('#register_outer_box').show();
+		$('#login_outer_box').hide();
+	}else{
+		$('#register_outer_box').hide();
+		$('#login_outer_box').show();
+	}
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/CSS/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h3>Welcome <span th:text="${validCustomerDetails.custname}"></span>!!</h3>
+
+
+<div class="refer_outer_box" id="refer_outer_box">
+	<div class="refer_table_box">
+		<table border="1">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Referred Name</th>
+					<th>Email-Id</th>
+					<th>Phone Number</th>
+					<th>Address</th>
+					<th>Relationship</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${validReferenceDetails.size() == 0}">
+		  			<td colspan=7 class="text-center">No data Available</td>
+		  		</tr>
+				<tr th:each="emp,iterStat:${validReferenceDetails}" th:unless="${validReferenceDetails.size() == 0}">
+					<td th:text="${iterStat.count}">1</td>
+					<td th:text=${emp.refername}></td>
+					<td th:text=${emp.referemail}></td>
+					<td th:text=${emp.referphonenumber}></td>
+					<td th:text=${emp.address}></td>
+					<td th:text=${emp.relation}></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="refer_form_box">
+		<form action="/saveNewReference" method="post">
+			<input type="hidden" name="loggedInEmail" th:value="${validCustomerDetails.email}">
+			<input type="hidden" name="custid" th:value="${validCustomerDetails.id}">
+			<input type="text" class="customText" name="refername" placeholder="Enter reference name" required>
+			<input type="email" class="customText" name="referemail" placeholder="Enter email address" required>
+			<input type="number" class="customText" name="referphonenumber" placeholder="Enter phone number" required>
+			<input type="text" class="customText" name="relation" placeholder="Enter relationship" required>
+			<textarea rows="3" class="customText" name="address" placeholder="Enter address" required></textarea>
+			
+			<div class="button_box">
+				<button type="submit" class="login_btn">Save</button>
+				<button type="reset"class="login_btn">Reset</button>
+			</div>
+		</form>
+		<p class="errorStatusSpan" th:if="${errorStatus}" th:text="${errorStatus}"></p>
+	</div>
+</div>
+</body>
+</html>
