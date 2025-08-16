@@ -13,8 +13,8 @@ services:
 #    - first-spring-net
     
   app:
-    #build: .                # builds your Dockerfile in current folder
-    image: premchand2597/prem-first-spring-boot:v01
+    build: .                # builds your Dockerfile in current folder
+    image: premchand2597/prem-first-spring-boot:v02
     container_name: prem-first-spring-container
     ports:
     - "8081:8080" # Host port 8081 → Container port 8080
