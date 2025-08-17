@@ -1,0 +1,60 @@
+1) When spring-boot application connected using external DB and directly run using cmd prompt without using docker compose file:
+	
+	step 01:
+		Make sure in spring boot application.properties database connection is not commented
+	step 02:
+		To run using cmd prompt
+		
+		docker run -p 9000:8080 -e SPRING_DATASOURCE_URL=jdbc:mysql://192.168.31.94:3306/crud_for_git_docker 
+					-e SPRING_DATASOURCE_USERNAME=springuser -e SPRING_DATASOURCE_PASSWORD=tiger premchand2597/prem-first-spring-boot:v03
+					
+					
+2) When spring-boot application connected using docker DB and directly run using cmd prompt without using docker compose file:
+
+	step 01:
+		docker images
+			REPOSITORY                             TAG       IMAGE ID       CREATED       SIZE
+			premchand2597/prem-first-spring-boot   v02       25b9f9f5893d   2 days ago    747MB
+			premchand2597/prem-first-spring-boot   v01       13135b703ee9   2 days ago    747MB
+			premchand2597/prem-first-spring-boot   v03       16f02a216693   2 days ago    747MB
+			mysql								   8.0       f483084b3708   3 weeks ago   1.07GB
+			
+	step 02:
+		docker run -p 3306:3306 -d -e MYSQL_ROOT_PASSWORD=hola mysql:8.0
+		
+	step 03:
+		C:\Users\Premchand>docker ps
+		CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS          PORTS                                         NAMES
+		ea320e0cd428   mysql:8.0   "docker-entrypoint.s…"   24 seconds ago   Up 24 seconds   0.0.0.0:3306->3306/tcp, [::]:3306->3306/tcp   funny_lamarr
+
+	step 04:
+		C:\Users\Premchand>docker exec -it ea320e0cd428 mysql -u root -p
+		Enter password: hola
+		
+	step 05:
+		docker exec -it ea320e0cd428 mysql -u root -p
+		Enter password: hola
+		
+ 		*** If you want customized mysql username 
+		 	step 01:
+		 		docker run --name my-mysql \
+				  -e MYSQL_ROOT_PASSWORD=hola \
+				  -e MYSQL_DATABASE=testdb \
+				  -e MYSQL_USER=itsMyWish \
+				  -e MYSQL_PASSWORD=secret \
+				  -p 3306:3306 \
+				  -d mysql:8.0
+				  
+			step 02:
+				docker exec -it my-mysql mysql -u itsMyWish -p
+				# Enter: secret
+		
+3) When spring-boot application connected using docker or external DB and directly run using docker compose file:
+
+	step 01: To run the application
+		docker-compose up -d
+		
+	step 02: To stop and remove the application and docker container
+		docker-compose down
+
+	
