@@ -5,8 +5,7 @@
 	step 02:
 		To run using cmd prompt
 		
-		docker run -p 9000:8080 -e SPRING_DATASOURCE_URL=jdbc:mysql://192.168.31.94:3306/crud_for_git_docker 
-					-e SPRING_DATASOURCE_USERNAME=springuser -e SPRING_DATASOURCE_PASSWORD=tiger premchand2597/prem-first-spring-boot:v03
+		docker run -p 9000:8080 -e SPRING_DATASOURCE_URL=jdbc:mysql://192.168.31.94:3306/crud_for_git_docker -e SPRING_DATASOURCE_USERNAME=springuser -e SPRING_DATASOURCE_PASSWORD=tiger premchand2597/prem-first-spring-boot:v03
 					
 					
 2) When spring-boot application connected using docker DB and directly run using cmd prompt without using docker compose file:
